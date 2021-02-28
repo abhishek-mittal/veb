@@ -1,0 +1,13 @@
+.veb-org-chart {
+  overflow: auto;
+  max-height: 76vh;
+  padding-right: 4em;
+
+  .org-chart, & > ul {
+    transform: scale(0.5);
+  }
+}
+
+.App {
+  background-color: aqua;
+}
