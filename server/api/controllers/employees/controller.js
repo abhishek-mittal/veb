@@ -1,8 +1,3 @@
-const {
-    response
-} = require('express');
-
-// const ss = require('mongoose').model('');
 const employee = {};
 
 employee.create = async (req, res) => {
@@ -32,13 +27,6 @@ employee.all = async (req, res) => {
 
     try {
         const Employee = req.rootConn.model('Employee');
-
-        //             from: "employees",
-        //             startWith: "$department",
-        //             connectFromField: "department",
-        //             connectToField: "reporting",
-        //             maxDepth: 0,
-        //             as: "children"
 
         const emps = await Employee.aggregate([{
                 $match: {
@@ -163,59 +151,6 @@ employee.all = async (req, res) => {
                 }
             }
         ])
-
-
-
-
-
-
-        // const emps = await Employee.aggregate([
-        //     {
-        //         $match: {
-        //             reporting: "default"
-        //         }
-        //     },
-        //     {
-        //         $graphLookup: {
-        //             from: "employees",
-        //             startWith: "$department",
-        //             connectFromField: "department",
-        //             connectToField: "reporting",
-        //             maxDepth: 0,
-        //             as: "children"
-        //         }
-        //     },
-        //     {
-        //         $unwind: "$children"
-        //     },
-        //     {
-        //         $addFields: {
-        //             "children.level": 0
-        //         }
-        //     },
-        //     {
-        //         $graphLookup: {
-        //             from: "employees",
-        //             startWith: "$children.department",
-        //             connectFromField: "children.department",
-        //             connectToField: "reporting",
-        //             maxDepth: 0,
-        //             as: "children.children"
-        //         }
-        //     },
-        //     {
-        //         $group: {
-        //             _id: "$_id",
-        //             department: { $first: "$department" },
-        //             reporting: { $first: "$reporting" },
-        //             name: { $first: "$name" },
-        //             pos: { $first: "$pos" },
-        //             children: { $push: "$children" }
-        //         }
-        //     }
-        // ])
-
-        // console.log(emps);
 
         res.json({
             status: true,
